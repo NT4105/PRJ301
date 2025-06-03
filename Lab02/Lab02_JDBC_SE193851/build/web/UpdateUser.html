@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+  <head>
+    <title>Update User</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <form action="ManageUserServlet?action=update" method="post">
+      <h1>Update user</h1>
+      UserName <input type="text" name="txtUserName" value="Uxxx" /> <br />
+      Password <input type="password" name="txtPassword" value="" /> <br />
+      LastName <input type="text" name="txtLastName" value="" /> <br />
+      <input type="checkbox" name="chkIsAdmin" />isAdmin<br />
+      <input type="submit" name="btnUpdate" value="Update" />
+    </form>
+  </body>
+</html>
