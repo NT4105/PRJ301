@@ -52,6 +52,7 @@ public class ShowSearchResultServlet extends HttpServlet {
                     strResult.append("<td>"+user.getPassword()+"</td>");
                     strResult.append("<td>"+user.isIsAdmin()+"</td>");
                     strResult.append("<td><a href='ProcessServlet?btnAction=Remove&&UserName=");
+                    strResult.append(user.getUserName()+"'>");
                     strResult.append("Delete</td>");
                     strResult.append("</tr>");
                 }
