@@ -143,7 +143,7 @@ public class UserDAO {
         Connection con = null;
         try {
             con = getConnection();
-            String sql = "Update Registration set password=?, lastName=?, isAdmin=? where userName=?";
+            String sql = "Update Registration set Password=?, LastName=?, isAdmin=? where userName=?";
             ps = con.prepareStatement(sql);
             ps.setString(1, user.getPassword());
             ps.setString(2, user.getLastName());

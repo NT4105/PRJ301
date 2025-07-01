@@ -31,8 +31,8 @@ public class ShowSearchResultServlet extends HttpServlet {
             List<User> result = (List<User>) request.getAttribute("SearchResult");
             StringBuilder strResult = new StringBuilder();
             if (result != null) {
-                strResult.append("table border='1'>");
-                strResult.append("thead");
+                strResult.append("<table border='1'>");
+                strResult.append("<thead>");
                 strResult.append("<tr>");
                 strResult.append("<th>No.</th>");
                 strResult.append("<th>Username</th>");
@@ -49,7 +49,7 @@ public class ShowSearchResultServlet extends HttpServlet {
                     strResult.append("<td>"+(++count)+".</td>");
                     strResult.append("<td>"+user.getUserName()+"</td>");
                     strResult.append("<td>"+user.getPassword()+"</td>");
-                    strResult.append("<td>"+user.getPassword()+"</td>");
+                    strResult.append("<td>"+user.getLastName()+"</td>");
                     strResult.append("<td>"+user.isIsAdmin()+"</td>");
                     strResult.append("<td><a href='ProcessServlet?btnAction=Remove&&UserName=");
                     strResult.append(user.getUserName()+"'>");
@@ -58,6 +58,7 @@ public class ShowSearchResultServlet extends HttpServlet {
                 }
                 strResult.append("</tbody>");
                 strResult.append("</table>");
+                out.println(strResult.toString());
             } else {
                 out.println("<h3>No the users found.</h3>");
             }
