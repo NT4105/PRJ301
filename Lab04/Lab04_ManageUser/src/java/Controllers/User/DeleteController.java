@@ -27,7 +27,7 @@ public class DeleteController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-            String userName = request.getParameter("txtUserName");
+            String userName = request.getParameter("UserName");
             String searchValue = request.getParameter("txtSearchValue");
             if(userName.equals(userLoggedIn.getUserName())) {
                 message = "This user logged in, can not delete";

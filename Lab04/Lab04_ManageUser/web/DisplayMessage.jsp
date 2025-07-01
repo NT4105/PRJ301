@@ -21,7 +21,7 @@
          <%
              }
           %>
-          <a href=<%=request.getAttribute("page")%>>Back</a>
+          <a href=<%=request.getAttribute("page")%>>Back</a></br>
           
     </body>
 </html>

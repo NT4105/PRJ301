@@ -14,24 +14,15 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     private final String searchPage = "Search.jsp";
     private final String userController = "UserController";
     private final String messagePage = "DisplayMessage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = messagePage;
+        response.setContentType("text/html;charset=UTF-8");
         String userName = request.getParameter("txtUserName");
         String password = request.getParameter("txtPassword");
         try {

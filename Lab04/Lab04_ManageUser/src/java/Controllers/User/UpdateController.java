@@ -15,15 +15,6 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
 public class UpdateController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     private final String displayMessagePage = "DisplayMessage.jsp";
     private final String loginPage = "Login.html";
     private final String userController = "UserController";
@@ -31,10 +22,11 @@ public class UpdateController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         String userName, password, lastName;
         boolean isAdmin = true;
         String message = null;
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         String url = loginPage;
         try {
             HttpSession session = request.getSession();
