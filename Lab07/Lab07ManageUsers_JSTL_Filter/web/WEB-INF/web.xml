@@ -6,20 +6,12 @@
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>UserController</url-pattern>
+        <url-pattern>/UserController</url-pattern>
     </filter-mapping>
-    <servlet>
-        <servlet-name>UserController</servlet-name>
-        <servlet-class>Controller.User.UserController</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>UserController</servlet-name>
         <servlet-class>Controllers.User.UserController</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>UserController</servlet-name>
-        <url-pattern>/UserController</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -33,7 +25,7 @@
         <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
     <resource-ref>
-        <res-ref-name>DBcon</res-ref-name>
+        <res-ref-name>SampleDB</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>

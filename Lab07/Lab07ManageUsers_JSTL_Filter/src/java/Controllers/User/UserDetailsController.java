@@ -11,29 +11,35 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-
-@WebServlet(name = "UserDetailsController", urlPatterns = {"/UserDetailsController"})
+@WebServlet(name = "UserDetailsController", urlPatterns = { "/UserDetailsController" })
 public class UserDetailsController extends HttpServlet {
     private final String userDetailsPage = "UserDetails.jsp";
     private final String userController = "UserController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = userDetailsPage;
         User user;
-        
+
         try {
-            String userName = request.getParameter("txtUserName");
+            String userName = request.getParameter("UserName");
             UserService userService = new UserService();
-            
-            if (!userName .isEmpty()) {
+
+            if (userName == null || userName.isEmpty()) {
+                // Try to get the logged-in user from session
+                User loggedInUser = (User) request.getSession().getAttribute("userLoggedIn");
+                if (loggedInUser != null) {
+                    userName = loggedInUser.getUserName();
+                }
+            }
+
+            if (userName != null && !userName.isEmpty()) {
                 user = userService.getUserByUserName(userName);
                 if (user != null) {
                     request.setAttribute("userDetails", user);
-                }
-                else {
-                    url = userController+"?action=Search";
+                } else {
+                    url = userController + "?action=Search";
                 }
             }
         } catch (Exception ex) {
@@ -44,14 +50,15 @@ public class UserDetailsController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -62,10 +69,10 @@ public class UserDetailsController extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

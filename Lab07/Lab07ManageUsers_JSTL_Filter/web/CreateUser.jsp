@@ -29,14 +29,14 @@
             </c:if><br/>
             Password <input type="password" placeholder="Enter password" name="txtPassword" />
             <c:if test="${not empty error.passwordError}">
-                <text style="color: red">${error.passwordError}">
+                <text style="color: red">${error.passwordError} </text>
             </c:if><br/>
             LastName <input type="text" placeholder="Enter last name" name="txtLastName" />
-            <c:if test="${not empty error.lastNameError}" >
-                <text style="color: red">${error.lastNameError}">
+            <c:if test="${not empty error.lastNameError}">
+                <text style="color: red">${error.lastNameError} </text>
             </c:if><br/>
             <input type="checkbox" name="chkIsAdmin" disabled="true" />isAdmin<br/>
-            <input type="submit" value="Create" name="action" /><br/>
+            <input type="submit" value="Create" name="action" /></br>
             
             <a href='Login.jsp'>Back</a><br/>
                 

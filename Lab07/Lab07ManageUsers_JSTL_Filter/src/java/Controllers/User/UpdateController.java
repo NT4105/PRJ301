@@ -12,11 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-
-@WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
+@WebServlet(name = "UpdateController", urlPatterns = { "/UpdateController" })
 public class UpdateController extends HttpServlet {
     private final String userController = "UserController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -25,7 +24,7 @@ public class UpdateController extends HttpServlet {
         String message = null;
         response.setContentType("text/html;charset=UTF-8");
         String url = userController;
-        
+
         try {
             UserService userService = new UserService();
             userName = request.getParameter("txtUserName");
@@ -37,51 +36,49 @@ public class UpdateController extends HttpServlet {
                 userError.setUserNameError("The UserName must be formatted Uxxx, x is digits");
                 isError = true;
             }
-            
+
             if (password.matches("(.){3,15}") == false) {
                 userError.setPasswordError("The Password must be 3 to 15 characters.");
                 isError = true;
             }
-            
+
             if (lastName.matches("(.){5,50}") == false) {
                 userError.setLastNameError("The LastName must be 5 to 50 characters.");
                 isError = true;
             }
-            
+
             if (isError == false) {
                 if (admin == null) {
                     isAdmin = false;
                 }
-                User user = new User (userName, password, lastName, isAdmin);
+                User user = new User(userName, password, lastName, isAdmin);
                 if (userService.updateUser(user) == true) {
                     message = "<b style='color: green'>The user has been updated successfully.</b>";
+                } else {
+                    message = "<b style='color: red'>Something went wrong.</b>";
                 }
-                else {
-                    message ="<b style='color: red'>Something went wrong.</b>";
-                }
-            }
-            else {
+            } else {
                 request.setAttribute("ErrorDetails", userError);
             }
-            url = userController+"?action=Details&UserName="+userName;
+            url = userController + "?action=Details&UserName=" + userName;
         } catch (Exception ex) {
             log(ex.getMessage());
-        }
-        finally {
+        } finally {
             request.setAttribute("message", message);
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -92,10 +89,10 @@ public class UpdateController extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

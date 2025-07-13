@@ -9,25 +9,29 @@
     </head>
     <body>
         <form method="post">
-            <input type="submit" formaction="LogoutController" value="Logout" /><br/>
+            <input type="submit" formaction="LogoutController" value="Logout" /></br>
         </form>
         <c:set var="userLoggedIn" value="${userLoggedIn}"/>
         <c:if test="${userLoggedIn} != null">
             <c:set var="lastName" value="${userLoggedIn.lastName}"/>
         </c:if>
         <c:set var="searchValue" value="${param.txtSearchValue}" />
-        <c:set var="user" value="${requestScope.useDetails}" />
+        <c:set var="user" value="${requestScope.userDetails}" />
         <c:if test ="${userDetails != null}" >
             <h1>User Details</h1>
             <c:set var="message" value="${requestScope.message}" />
             <c:if test="${message != null}" >
                 ${message}
             </c:if>
-            <form aciton="UserController" method="post">
+            <form action="UserController" method="post">
                 <c:set var="error" value="${requestScope.ErrorDetails}" />
                 UserName <input type="text" readonly="true" name="txtUserName" value='${user.userName}' />
-                <c:if test="${not empty error.userNameError}" >
-                    <text style="color: red"> ${error.lastNameError} </text>
+                <c:if test="${not empty error.userNameError} ">
+                    <text style="color: red"> ${error.userNameError} </text>
+                </c:if><br/>
+                Password <input type="password" name="txtPassword" value='${user.password}' />
+                <c:if test="${not empty error.passwordError} ">
+                    <text style="color: red">${error.passwordError} </text>
                 </c:if><br/>
                 LastName <input type="text" name="txtLastName" value='${user.lastName}' />
                 <c:if test="${not empty error.lastNameError}">
@@ -37,7 +41,7 @@
                 <input type="checkbox" name="chkIsAdmin"
                        <c:if test="${user.isAdmin==true}">checked</c:if>
                        <c:if test="${userLoggedIn.isAdmin==false}">disabled</c:if>>isAdmin
-                <input><br/>
+                </input></br>
                 <input type="submit" value="Update" name="action" /></br>
             </form>
                        <c:if test="${userLoggedIn.isAdmin}" >
